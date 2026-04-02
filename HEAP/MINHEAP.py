@@ -50,11 +50,15 @@ class MinHeap:
         if root.left == node or root.right == node:
             return root
         
-        left = self.get_Parent(node, root.left)
-        if left:
-            return left
-        
-        return self.get_Parent(node, root.right)
+        if root.left:
+            parent = self.get_Parent(node, root.left)
+            if parent: return parent
+
+        if root.right:
+            parent = self.get_Parent(node, root.right)
+            if parent: return parent
+
+        return None
 
     def extract_min(self):
         if self.root is None:
